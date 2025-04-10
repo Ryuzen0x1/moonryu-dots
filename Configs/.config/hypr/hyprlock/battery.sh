@@ -6,34 +6,29 @@
 
 
 
-# Get the current battery percentage
-battery_percentage=$(cat /sys/class/power_supply/BAT1/capacity)
+BAT_PATH="/sys/class/power_supply/BAT1"
 
-# Get the battery status (Charging or Discharging)
-battery_status=$(cat /sys/class/power_supply/BAT1/status)
+# Check if battery path exists
+if [ ! -d "$BAT_PATH" ]; then
+    echo "Battery not found"
+    exit 1
+fi
 
-# Define the battery icons for each 10% segment
-battery_icons=("󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰁹")
+# Read battery percentage and status
+battery_percentage=$(<"$BAT_PATH/capacity")
+battery_status=$(<"$BAT_PATH/status")
 
-# Define the charging icon
+# Define icons
+battery_icons=(󰂃 󰁺 󰁻 󰁼 󰁽 󰁾 󰁿 󰂀 󰂁 󰁹)
 charging_icon="󰂄"
 
-# Calculate the index for the icon array
-# Ensure the index is within bounds (0 to 9) for battery percentages 0 to 100
+# Determine icon index
 icon_index=$((battery_percentage / 10))
+(( battery_percentage == 100 )) && icon_index=9
 
-# If the battery is 100%, use the last icon (index 9)
-if [ "$battery_percentage" -eq 100 ]; then
-    icon_index=9
-fi
-
-# Get the corresponding icon
+# Choose icon
 battery_icon=${battery_icons[$icon_index]}
+[[ "$battery_status" == "Charging" ]] && battery_icon=$charging_icon
 
-# Check if the battery is charging
-if [ "$battery_status" = "Charging" ]; then
-    battery_icon="$charging_icon"
-fi
-
-# Output the battery percentage and icon
+# Output
 echo "$battery_percentage% $battery_icon"
