@@ -73,9 +73,15 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-    color: @primary;
+    color: @tertiary;
     margin-right: 0em;
     transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.68);
+}
+
+#workspaces button:hover {
+    background-color: @tertiary;
+    color: @scrim;
+    border-radius: 10px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

@@ -31,21 +31,46 @@
 	    "clock",
 	    "custom/power-menu"
     ],
-    "hyprland/workspaces": {
+    // "hyprland/workspaces": {
+	//     "all-outputs": true,
+	//     "active-only": false,
+	//     "on-click": "activate",
+	//     "format": "{icon}",
+	//     "on-scroll-up": "hyprctl dispatch workspace -1",
+	//     "on-scroll-down": "hyprctl dispatch workspace +1",
+	//     "format-icons": {
+	// 	    "urgent": "",
+	// 	    "default": "",
+	// 	    "active": "󰮯"
+	//     },
+	//     "persistent-workspaces": {
+	// 	    "*": 5
+	//     }
+
+	"hyprland/workspaces": {
 	    "all-outputs": true,
 	    "active-only": false,
 	    "on-click": "activate",
 	    "format": "{icon}",
-	    "on-scroll-up": "hyprctl dispatch workspace -1",
-	    "on-scroll-down": "hyprctl dispatch workspace +1",
+	    "on-scroll-up": "hyprctl dispatch workspace e-1",
+	    "on-scroll-down": "hyprctl dispatch workspace e+1",
 	    "format-icons": {
-		    "urgent": "",
-		    "default": "",
-		    "active": "󰮯"
+		    "1": "一",
+		    "2": "二",
+		    "3": "三",
+		    "4": "四",
+		    "5": "五",
+		    "6": "六",
+		    "7": "七",
+		    "8": "八",
+		    "9": "九",
+		    "10": "十"
+
 	    },
 	    "persistent-workspaces": {
-		    "*": 5
+		    "*": 8
 	    }
+
     },
     "hyprland/window": {
         "format": "{}",
@@ -213,7 +238,7 @@
     "custom/power-menu": {
 	    "format": "",
 	    "tooltip-format": "Click to launch wlogout", 
-	    "on-click": "$HOME/.local/share/bin/wlogout.sh"
+	    "on-click": "$HOME/.local/lib/qu4ntum/wlogout.sh"
     },
     "custom/launcher": {
 	    "format": "󰣇",
